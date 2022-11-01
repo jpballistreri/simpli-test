@@ -3,9 +3,14 @@ version: "3"
 services:
   simple_test_api:
     build:
-      context: ./backend/
+      context: ./api/
     container_name: simple_test_api
     restart: unless-stopped
+    environment:
+      POSTGRES_DATABASE_HOST: ${POSTGRES_DATABASE_HOST}
+      POSTGRES_DATABASE_NAME: ${POSTGRES_DATABASE_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}      
     ports:
       - 127.0.0.1:3002:3002
 

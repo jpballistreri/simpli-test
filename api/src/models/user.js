@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  User.sync({ alter: true });
+  User.sync({ alter: false });
 
   return User;
 };
