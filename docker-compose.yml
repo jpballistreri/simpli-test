@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  simple_test_api:
+    build:
+      context: ./backend/
+    container_name: simple_test_api
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:3002:3002
+
+  simple_test_db:
+    image: postgres:13
+    container_name: simple_test_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data_db:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5433:5432
+    
+  simple_test_pgadmin:
+    image: dpage/pgadmin4
+    container_name: simple_test_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./data_pgadmin:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:8082:80"  
+  
+  
