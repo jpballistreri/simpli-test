@@ -4,15 +4,28 @@ module.exports = (sequelize, Sequelize) => {
     {
       model: {
         type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 32] },
       },
       title: {
         type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 32] },
       },
       description: {
         type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 256] },
       },
       gear_box: {
         type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 16] },
+      },
+      dealer_id: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: { isNumeric: true, len: [1, 10] },
       },
       createdAt: {
         type: Sequelize.DATE,

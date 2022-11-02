@@ -4,7 +4,6 @@ const Dealer = db.dealer;
 const jwt = require("jsonwebtoken");
 
 exports.create = (req, res) => {
-  console.log("CREATE?");
   const { name, street_name, street_number, location, email, tel } = req.body;
   console.log(req.body);
 

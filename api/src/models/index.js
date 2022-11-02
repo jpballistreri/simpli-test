@@ -19,10 +19,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.lead = require("./lead")(sequelize, Sequelize);
-db.dealer = require("./dealer")(sequelize, Sequelize);
+db.dealer = require("./dealer.model")(sequelize, Sequelize);
 //db.user = require("./user")(sequelize, Sequelize);
 db.publication = require("./publication")(sequelize, Sequelize);
-db.vehicle = require("./vehicle")(sequelize, Sequelize);
+db.vehicle = require("./vehicle.model")(sequelize, Sequelize);
 db.accesory = require("./accesory")(sequelize, Sequelize);
 db.publication_vehicle = require("./publication_vehicle")(sequelize, Sequelize);
 
