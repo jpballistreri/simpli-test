@@ -1,22 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define(
-    "user",
+  const Publication = sequelize.define(
+    "publication",
     {
-      user_name: {
-        type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
-        unique: true,
-      },
-      password: {
-        type: Sequelize.STRING,
-      },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",
       },
-
       updatedAt: {
         type: Sequelize.DATE,
         field: "updated_at",
@@ -27,7 +16,10 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  //User.sync({ alter: false });
+  Publication.associate = (models) => {
+    Publication.belongsTo(models.dealer);
+  };
+  //Publication.sync({ force: true });
 
-  return User;
+  return Publication;
 };

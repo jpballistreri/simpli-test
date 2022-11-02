@@ -1,22 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define(
-    "user",
+  const Vehicle = sequelize.define(
+    "vehicle",
     {
-      user_name: {
+      model: {
         type: Sequelize.STRING,
       },
-      email: {
+      title: {
         type: Sequelize.STRING,
-        unique: true,
       },
-      password: {
+      description: {
+        type: Sequelize.STRING,
+      },
+      gear_box: {
         type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",
       },
-
       updatedAt: {
         type: Sequelize.DATE,
         field: "updated_at",
@@ -27,7 +28,12 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  //User.sync({ alter: false });
 
-  return User;
+  Vehicle.associate = (models) => {
+    Vehicle.belongsTo(models.dealer);
+    Vehicle.hasMany(models.accesory);
+  };
+  //Vehicle.sync({ force: true });
+
+  return Vehicle;
 };

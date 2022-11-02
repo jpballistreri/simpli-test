@@ -1,22 +1,30 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define(
-    "user",
+  const Lead = sequelize.define(
+    "lead",
     {
-      user_name: {
+      name: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
-        unique: true,
+        isEmail: true,
+        allowNull: false,
       },
-      password: {
+      tel: {
+        type: Sequelize.INTEGER,
+      },
+      query: {
         type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",
       },
-
       updatedAt: {
         type: Sequelize.DATE,
         field: "updated_at",
@@ -27,7 +35,12 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  //User.sync({ alter: false });
 
-  return User;
+  Lead.associate = (models) => {
+    Lead.belongsTo(models.dealer);
+  };
+
+  //Lead.sync({ force: true });
+
+  return Lead;
 };
