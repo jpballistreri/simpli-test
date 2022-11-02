@@ -27,6 +27,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Hola" });
 });
 
+//api/login getJWT
+require("./routes/login.router")(app);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
