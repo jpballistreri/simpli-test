@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
   const Lead = sequelize.define(
     "lead",
     {
-      name: {
+      first_name: {
         type: Sequelize.STRING,
         allowNull: false,
       },

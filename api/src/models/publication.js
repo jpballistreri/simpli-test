@@ -2,6 +2,10 @@ module.exports = (sequelize, Sequelize) => {
   const Publication = sequelize.define(
     "publication",
     {
+      price: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",

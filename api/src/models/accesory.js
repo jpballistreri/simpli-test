@@ -2,24 +2,17 @@ module.exports = (sequelize, Sequelize) => {
   const Accessory = sequelize.define(
     "accesory",
     {
-      name: {
+      model: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      last_name: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      description: {
         type: Sequelize.STRING,
-        isEmail: true,
         allowNull: false,
-      },
-      tel: {
-        type: Sequelize.INTEGER,
-      },
-      query: {
-        type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
