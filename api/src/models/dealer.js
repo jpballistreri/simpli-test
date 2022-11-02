@@ -5,27 +5,32 @@ module.exports = (sequelize, Sequelize) => {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 32] },
       },
       street_name: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 32] },
       },
       street_number: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { isNumeric: true, len: [1, 10] },
       },
       location: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 32] },
       },
       email: {
         type: Sequelize.STRING,
-        isEmail: true,
         allowNull: false,
+        validate: { isEmail: true, len: [1, 64] },
       },
       tel: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
+        validate: { isNumeric: true, len: [1, 32] },
       },
 
       createdAt: {

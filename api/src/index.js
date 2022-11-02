@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 var path = require("path");
+const { checkJWT } = require("./middleware/checkJWT");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
@@ -14,6 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
+app.use("/api/dealer", checkJWT);
+
 db.sequelize
   .sync()
   .then(() => {
@@ -23,12 +26,15 @@ db.sequelize
     console.log("Failed to sync db: " + err.message);
   });
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.json({ message: "Hola" });
 });
 
 //api/login getJWT
 require("./routes/login.router")(app);
+
+//api/dealer({id})
+require("./routes/dealer.router")(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
