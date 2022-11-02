@@ -43,7 +43,7 @@ exports.update = (req, res) => {
     console.log(num);
     num[0] === 1
       ? res.send({ message: `Dealer id:${dealerId} updated` })
-      : res.send({ message: "Dealer not found" });
+      : res.status(404).send({ message: "Dealer not found" });
   });
 };
 
@@ -53,7 +53,7 @@ exports.findOne = (req, res) => {
   Dealer.findByPk(dealerId)
     .then((data) => {
       if (data === null) {
-        res.status(404).send({ message: "Dealer not exist" });
+        res.status(404).send({ message: "Dealer not found" });
       } else {
         res.status(200).send({ dealer: data });
       }
@@ -61,4 +61,13 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       res.status(500).send({ message: "db error" });
     });
+};
+
+exports.delete = (req, res) => {
+  const dealerId = req.params.id;
+  Dealer.destroy({ where: { id: dealerId } }).then((num) => {
+    num === 1
+      ? res.send({ message: `Dealer id: ${dealerId} deleted` })
+      : res.status(404).send({ message: "Dealer not found" });
+  });
 };
