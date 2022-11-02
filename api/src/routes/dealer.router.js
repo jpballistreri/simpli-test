@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   router.get("/:id", dealer.findOne);
   router.post("/", dealer.create);
+  router.put("/:id", dealer.update);
 
   app.use("/api/dealer", router);
 };

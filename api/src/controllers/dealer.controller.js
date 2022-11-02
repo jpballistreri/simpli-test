@@ -37,6 +37,16 @@ exports.create = (req, res) => {
     });
 };
 
+exports.update = (req, res) => {
+  const dealerId = req.params.id;
+  Dealer.update(req.body, { where: { id: dealerId } }).then((num) => {
+    console.log(num);
+    num[0] === 1
+      ? res.send({ message: `Dealer id:${dealerId} updated` })
+      : res.send({ message: "Dealer not found" });
+  });
+};
+
 exports.findOne = (req, res) => {
   const dealerId = req.params.id;
 
