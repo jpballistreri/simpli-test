@@ -39,28 +39,50 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
   const dealerId = req.params.id;
-  Dealer.update(req.body, { where: { id: dealerId } }).then((num) => {
-    console.log(num);
-    num[0] === 1
-      ? res.send({ message: `Dealer id:${dealerId} updated` })
-      : res.status(404).send({ message: "Dealer not found" });
-  });
+  Dealer.update(req.body, { where: { id: dealerId } })
+    .then((num) => {
+      console.log(num);
+      num[0] === 1
+        ? res.send({ message: `Dealer id:${dealerId} updated` })
+        : res.status(404).send({ message: "Dealer not found" });
+    })
+    .catch((err) => {
+      console.log(err);
+      try {
+        const errors = err.errors.map((error) => {
+          console.log("EEROS?");
+          return error.message;
+        });
+        res.status(400).send({
+          message: errors,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(400).send({ message: "server error" });
+      }
+    });
 };
 
 exports.findOne = (req, res) => {
   const dealerId = req.params.id;
 
-  Dealer.findByPk(dealerId)
-    .then((data) => {
-      if (data === null) {
-        res.status(404).send({ message: "Dealer not found" });
-      } else {
-        res.status(200).send({ dealer: data });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "db error" });
+  if (dealerId) {
+    Dealer.findByPk(dealerId)
+      .then((data) => {
+        if (data === null) {
+          res.status(404).send({ message: "Dealer not found" });
+        } else {
+          res.status(200).send(data);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({ message: "db error" });
+      });
+  } else {
+    Dealer.findAll().then((data) => {
+      res.status(200).send(data);
     });
+  }
 };
 
 exports.delete = (req, res) => {
