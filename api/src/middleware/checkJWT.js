@@ -14,16 +14,6 @@ const checkJWT = (req, res, next) => {
     } catch (error) {
       res.status(403).send("Unauthorized");
     }
-
-    //fs.auth()
-    // .verifyIdToken(token)
-    // .then((decodedToken) => {
-    //   req.headers.decodedToken = decodedToken;
-    //   next();
-    // })
-    // .catch(() => {
-    //   res.status(403).send("Unauthorized");
-    // });
   } else {
     res.status(403).send("Unauthorized");
   }

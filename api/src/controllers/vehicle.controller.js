@@ -1,5 +1,6 @@
 const db = require("../models");
 const Vehicle = db.vehicle;
+const Dealer = db.dealer;
 //const Op = db.Sequelize.Op;
 const jwt = require("jsonwebtoken");
 
@@ -68,30 +69,35 @@ exports.update = (req, res) => {
       }
     });
 };
-//};
-//
-//exports.findOne = (req, res) => {
-//  const dealerId = req.params.id;
-//
-//  if (dealerId) {
-//    Vehicle.findByPk(dealerId)
-//      .then((data) => {
-//        if (data === null) {
-//          res.status(404).send({ message: "Vehicle not found" });
-//        } else {
-//          res.status(200).send(data);
-//        }
-//      })
-//      .catch((err) => {
-//        res.status(500).send({ message: "db error" });
-//      });
-//  } else {
-//    Vehicle.findAll().then((data) => {
-//      res.status(200).send(data);
-//    });
-//  }
-//};
-//
+
+exports.findOne = (req, res) => {
+  const dealer_id = req.params.id_dealer;
+  const vehicle_id = req.params.id_vehicle;
+
+  vehicle_id
+    ? Vehicle.findOne({
+        where: { id: vehicle_id, dealer_id: dealer_id },
+        include: [{ model: Dealer }],
+      })
+        .then((data) => {
+          data === null
+            ? res.status(404).send({ message: "Vehicle not found" })
+            : res.status(200).send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({ message: "db error" });
+        })
+    : Vehicle.findAll({
+        where: { dealer_id: dealer_id },
+        include: [{ model: Dealer }],
+      }).then((data) => {
+        console.log(data);
+        data.length === 0
+          ? res.status(404).send({ message: `Vehicles not found ` })
+          : res.status(200).send(data);
+      });
+};
+
 //exports.delete = (req, res) => {
 //  const dealerId = req.params.id;
 //  Vehicle.destroy({ where: { id: dealerId } }).then((num) => {
@@ -100,4 +106,3 @@ exports.update = (req, res) => {
 //      : res.status(404).send({ message: "Vehicle not found" });
 //  });
 //};
-//

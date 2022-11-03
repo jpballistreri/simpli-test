@@ -3,7 +3,7 @@ module.exports = (app) => {
 
   var router = require("express").Router();
 
-  router.get("/?:id?", dealer.findOne);
+  router.get("/:id", dealer.findOne);
   router.post("/", dealer.create);
   router.put("/:id", dealer.update);
   router.delete("/:id", dealer.delete);
