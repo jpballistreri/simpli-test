@@ -98,11 +98,16 @@ exports.findOne = (req, res) => {
       });
 };
 
-//exports.delete = (req, res) => {
-//  const dealerId = req.params.id;
-//  Vehicle.destroy({ where: { id: dealerId } }).then((num) => {
-//    num === 1
-//      ? res.send({ message: `Vehicle id: ${dealerId} deleted` })
-//      : res.status(404).send({ message: "Vehicle not found" });
-//  });
-//};
+exports.delete = (req, res) => {
+  const vehicle_id = req.params.id_vehicle;
+
+  Vehicle.destroy({ where: { id: vehicle_id } })
+    .then((num) => {
+      num === 1
+        ? res.send({ message: `Vehicle id: ${vehicle_id} deleted` })
+        : res.status(404).send({ message: "Vehicle not found" });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "db error" });
+    });
+};
