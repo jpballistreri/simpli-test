@@ -4,7 +4,10 @@ const Vehicle = db.vehicle;
 const jwt = require("jsonwebtoken");
 
 exports.create = (req, res) => {
-  const { model, title, description, gear_box, dealer_id } = req.body;
+  const { model, title, description, gear_box } = req.body;
+  const dealer_id = req.params.id_dealer;
+
+  console.log(dealer_id);
 
   const newVehicle = {
     model,
@@ -13,6 +16,7 @@ exports.create = (req, res) => {
     gear_box,
     dealer_id,
   };
+  console.log(newVehicle);
   Vehicle.create(newVehicle)
     .then((data) => {
       res.send(data);
@@ -34,30 +38,36 @@ exports.create = (req, res) => {
     });
 };
 
-//exports.update = (req, res) => {
-//  const dealerId = req.params.id;
-//  Vehicle.update(req.body, { where: { id: dealerId } })
-//    .then((num) => {
-//      console.log(num);
-//      num[0] === 1
-//        ? res.send({ message: `Vehicle id:${dealerId} updated` })
-//        : res.status(404).send({ message: "Vehicle not found" });
-//    })
-//    .catch((err) => {
-//      console.log(err);
-//      try {
-//        const errors = err.errors.map((error) => {
-//          console.log("EEROS?");
-//          return error.message;
-//        });
-//        res.status(400).send({
-//          message: errors,
-//        });
-//      } catch (error) {
-//        console.log(error);
-//        res.status(400).send({ message: "server error" });
-//      }
-//    });
+exports.update = (req, res) => {
+  //hacer update con el id de vehiculo
+  console.log(req.params);
+  const dealer_id = req.params.id_dealer;
+  const vehicle_id = req.params.id_vehicle;
+  req.body.dealer_id = dealer_id;
+  console.log(req.body);
+  Vehicle.update(req.body, { where: { id: vehicle_id } })
+    .then((num) => {
+      console.log(num);
+      num[0] === 1
+        ? res.send({ message: `Vehicle id:${dealer_id} updated` })
+        : res.status(404).send({ message: "Vehicle not found" });
+    })
+    .catch((err) => {
+      console.log(err);
+      try {
+        const errors = err.errors.map((error) => {
+          console.log("EEROS?");
+          return error.message;
+        });
+        res.status(400).send({
+          message: errors,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(400).send({ message: "server error" });
+      }
+    });
+};
 //};
 //
 //exports.findOne = (req, res) => {

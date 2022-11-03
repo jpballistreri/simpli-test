@@ -4,9 +4,9 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   //router.get("/:id?", vehicle.findOne);
-  router.post("/", vehicle.create);
-  //router.put("/:id", vehicle.update);
+  router.post("/api/dealer/:id_dealer/vehicles/", vehicle.create);
+  router.put("/api/dealer/:id_dealer/vehicles/:id_vehicle", vehicle.update);
   //router.delete("/:id", vehicle.delete);
 
-  app.use("/api/dealer/:id/vehicles/", router);
+  app.use(router);
 };
