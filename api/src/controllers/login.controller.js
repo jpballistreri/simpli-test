@@ -11,10 +11,13 @@ exports.login = (req, res) => {
       { id: userId, userName: userName },
       process.env.JWT_SECRET_KEY,
       {
-        expiresIn: 1 * 24 * 60 * 60 * 1000,
+        expiresIn: "1d",
       }
     );
-    res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
+    res.cookie("jwt", token, {
+      maxAge: 86400000,
+      httpOnly: true,
+    });
     return res.status(201).send({ message: "Auth OK!" });
   } else {
     return res.status(401).send({ message: "userId & userName is required" });
