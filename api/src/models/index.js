@@ -42,6 +42,8 @@ db.accesory.belongsTo(db.dealer);
 db.vehicle.hasMany(db.accesory);
 db.accesory.belongsTo(db.vehicle);
 
+db.vehicle.hasMany(db.post_vehicle);
+db.post.hasMany(db.post_vehicle);
 db.post_vehicle.belongsTo(db.post);
 db.post_vehicle.belongsTo(db.vehicle);
 

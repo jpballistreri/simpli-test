@@ -40,6 +40,7 @@ module.exports = (sequelize, Sequelize) => {
   Vehicle.associate = (models) => {
     Vehicle.belongsTo(models.dealer);
     Vehicle.hasMany(models.accesory);
+    Vehicle.hasMany(models.post_vehicle);
   };
   //Vehicle.sync({ force: true });
 

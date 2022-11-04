@@ -1,5 +1,6 @@
 const db = require("../models");
 const Dealer = db.dealer;
+const Vehicle = db.vehicle;
 const Post = db.post;
 const Post_vehicle = db.post_vehicle;
 const jwt = require("jsonwebtoken");
@@ -44,10 +45,10 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
   console.log(req.params);
   const dealer_id = req.params.id_dealer;
-  const vehicle_id = req.params.id_vehicle;
+  const post_id = req.params.id_vehicle;
   req.body.dealer_id = dealer_id;
   console.log(req.body);
-  Post.update(req.body, { where: { id: vehicle_id } })
+  Post.update(req.body, { where: { id: post_id } })
     .then((num) => {
       console.log(num);
       num[0] === 1
@@ -72,13 +73,16 @@ exports.update = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  const dealer_id = req.params.id_dealer;
-  const vehicle_id = req.params.id_vehicle;
+  const dealer_id = req.params.dealer_id;
+  const post_id = req.params.post_id;
 
-  vehicle_id
+  post_id
     ? Post.findOne({
-        where: { id: vehicle_id, dealer_id: dealer_id },
-        include: [{ model: Dealer }],
+        where: { id: post_id, dealer_id: dealer_id },
+        include: [
+          { model: Dealer },
+          { model: Post_vehicle, include: [{ model: Vehicle }] },
+        ],
       })
         .then((data) => {
           data === null
@@ -90,22 +94,23 @@ exports.findOne = (req, res) => {
         })
     : Post.findAll({
         where: { dealer_id: dealer_id },
-        include: [{ model: Dealer }],
+        //include: [{ model: Dealer }],
+        include: [{ model: Post_vehicle, include: [{ model: Vehicle }] }],
       }).then((data) => {
         console.log(data);
         data.length === 0
-          ? res.status(404).send({ message: `Vehicles not found ` })
+          ? res.status(404).send({ message: `Posts not found ` })
           : res.status(200).send(data);
       });
 };
 
 exports.delete = (req, res) => {
-  const vehicle_id = req.params.id_vehicle;
+  const post_id = req.params.id_vehicle;
 
-  Post.destroy({ where: { id: vehicle_id } })
+  Post.destroy({ where: { id: post_id } })
     .then((num) => {
       num === 1
-        ? res.send({ message: `Post id: ${vehicle_id} deleted` })
+        ? res.send({ message: `Post id: ${post_id} deleted` })
         : res.status(404).send({ message: "Post not found" });
     })
     .catch((err) => {

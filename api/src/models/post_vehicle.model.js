@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
   Post_vehicle.associate = (models) => {
-    Post_vehicle.belongsTo(models.publication);
+    Post_vehicle.belongsTo(models.post);
     Post_vehicle.belongsTo(models.vehicle);
   };
   //Post_vehicle.sync({ force: true });

@@ -22,6 +22,7 @@ module.exports = (sequelize, Sequelize) => {
   );
   Post.associate = (models) => {
     Post.belongsTo(models.dealer);
+    Post.hasMany(models.post_vehicle);
   };
   //Post.sync({ force: true });
 
