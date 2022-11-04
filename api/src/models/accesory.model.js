@@ -5,14 +5,17 @@ module.exports = (sequelize, Sequelize) => {
       model: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 32] },
       },
       title: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 32] },
       },
       description: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: { len: [1, 256] },
       },
       dealer_id: {
         type: Sequelize.STRING,
