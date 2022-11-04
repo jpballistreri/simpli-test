@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  const Publication = sequelize.define(
-    "publication",
+  const Post = sequelize.define(
+    "post",
     {
       price: {
         type: Sequelize.INTEGER,
@@ -20,10 +20,10 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  Publication.associate = (models) => {
-    Publication.belongsTo(models.dealer);
+  Post.associate = (models) => {
+    Post.belongsTo(models.dealer);
   };
-  //Publication.sync({ force: true });
+  //Post.sync({ force: true });
 
-  return Publication;
+  return Post;
 };

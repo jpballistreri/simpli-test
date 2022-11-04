@@ -21,17 +21,17 @@ db.sequelize = sequelize;
 db.lead = require("./lead.model")(sequelize, Sequelize);
 db.dealer = require("./dealer.model")(sequelize, Sequelize);
 //db.user = require("./user")(sequelize, Sequelize);
-db.publication = require("./publication")(sequelize, Sequelize);
+db.post = require("./post.model")(sequelize, Sequelize);
 db.vehicle = require("./vehicle.model")(sequelize, Sequelize);
 db.accesory = require("./accesory.model")(sequelize, Sequelize);
-db.publication_vehicle = require("./publication_vehicle")(sequelize, Sequelize);
+db.post_vehicle = require("./post_vehicle.model")(sequelize, Sequelize);
 
 //Relaciones
 db.dealer.hasMany(db.lead);
 db.lead.belongsTo(db.dealer);
 
-db.dealer.hasMany(db.publication);
-db.publication.belongsTo(db.dealer);
+db.dealer.hasMany(db.post);
+db.post.belongsTo(db.dealer);
 
 db.dealer.hasMany(db.vehicle);
 db.vehicle.belongsTo(db.dealer);
@@ -42,7 +42,7 @@ db.accesory.belongsTo(db.dealer);
 db.vehicle.hasMany(db.accesory);
 db.accesory.belongsTo(db.vehicle);
 
-db.publication_vehicle.belongsTo(db.publication);
-db.publication_vehicle.belongsTo(db.vehicle);
+db.post_vehicle.belongsTo(db.post);
+db.post_vehicle.belongsTo(db.vehicle);
 
 module.exports = db;

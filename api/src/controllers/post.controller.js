@@ -1,24 +1,27 @@
 const db = require("../models");
-const Vehicle = db.vehicle;
 const Dealer = db.dealer;
-//const Op = db.Sequelize.Op;
+const Post = db.post;
+const Post_vehicle = db.post_vehicle;
 const jwt = require("jsonwebtoken");
 
 exports.create = (req, res) => {
-  const { model, title, description, gear_box } = req.body;
-  const dealer_id = req.params.id_dealer;
+  const { price, vehicle_id } = req.body;
+  const dealer_id = req.params.dealer_id;
 
-  console.log(dealer_id);
-
-  const newVehicle = {
-    model,
-    title,
-    description,
-    gear_box,
+  const newPost = {
+    price,
     dealerId: dealer_id,
   };
-  console.log(newVehicle);
-  Vehicle.create(newVehicle)
+
+  Post.create(newPost)
+    .then((data) => {
+      console.log("cata " + data);
+      Post_vehicle.create({
+        postId: data.id,
+        vehicleId: vehicle_id,
+      });
+      return data;
+    })
     .then((data) => {
       res.send(data);
     })
@@ -44,12 +47,12 @@ exports.update = (req, res) => {
   const vehicle_id = req.params.id_vehicle;
   req.body.dealer_id = dealer_id;
   console.log(req.body);
-  Vehicle.update(req.body, { where: { id: vehicle_id } })
+  Post.update(req.body, { where: { id: vehicle_id } })
     .then((num) => {
       console.log(num);
       num[0] === 1
-        ? res.send({ message: `Vehicle id:${dealer_id} updated` })
-        : res.status(404).send({ message: "Vehicle not found" });
+        ? res.send({ message: `Post id:${dealer_id} updated` })
+        : res.status(404).send({ message: "Post not found" });
     })
     .catch((err) => {
       console.log(err);
@@ -73,19 +76,19 @@ exports.findOne = (req, res) => {
   const vehicle_id = req.params.id_vehicle;
 
   vehicle_id
-    ? Vehicle.findOne({
+    ? Post.findOne({
         where: { id: vehicle_id, dealer_id: dealer_id },
         include: [{ model: Dealer }],
       })
         .then((data) => {
           data === null
-            ? res.status(404).send({ message: "Vehicle not found" })
+            ? res.status(404).send({ message: "Post not found" })
             : res.status(200).send(data);
         })
         .catch((err) => {
           res.status(500).send({ message: "db error" });
         })
-    : Vehicle.findAll({
+    : Post.findAll({
         where: { dealer_id: dealer_id },
         include: [{ model: Dealer }],
       }).then((data) => {
@@ -99,11 +102,11 @@ exports.findOne = (req, res) => {
 exports.delete = (req, res) => {
   const vehicle_id = req.params.id_vehicle;
 
-  Vehicle.destroy({ where: { id: vehicle_id } })
+  Post.destroy({ where: { id: vehicle_id } })
     .then((num) => {
       num === 1
-        ? res.send({ message: `Vehicle id: ${vehicle_id} deleted` })
-        : res.status(404).send({ message: "Vehicle not found" });
+        ? res.send({ message: `Post id: ${vehicle_id} deleted` })
+        : res.status(404).send({ message: "Post not found" });
     })
     .catch((err) => {
       res.status(500).send({ message: "db error" });

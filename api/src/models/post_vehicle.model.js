@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  const Publication_vehicle = sequelize.define(
-    "publication_vehicle",
+  const Post_vehicle = sequelize.define(
+    "post_vehicle",
     {
       createdAt: {
         type: Sequelize.DATE,
@@ -16,11 +16,11 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  Publication_vehicle.associate = (models) => {
-    Publication_vehicle.belongsTo(models.publication);
-    Publication_vehicle.belongsTo(models.vehicle);
+  Post_vehicle.associate = (models) => {
+    Post_vehicle.belongsTo(models.publication);
+    Post_vehicle.belongsTo(models.vehicle);
   };
-  //Publication_vehicle.sync({ force: true });
+  //Post_vehicle.sync({ force: true });
 
-  return Publication_vehicle;
+  return Post_vehicle;
 };
