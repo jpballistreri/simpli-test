@@ -18,7 +18,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.lead = require("./lead")(sequelize, Sequelize);
+db.lead = require("./lead.model")(sequelize, Sequelize);
 db.dealer = require("./dealer.model")(sequelize, Sequelize);
 //db.user = require("./user")(sequelize, Sequelize);
 db.publication = require("./publication")(sequelize, Sequelize);
