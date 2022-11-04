@@ -17,16 +17,6 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         validate: { len: [1, 256] },
       },
-      dealer_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: { isNumeric: true, len: [1, 10] },
-      },
-      vehicle_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: { isNumeric: true, len: [1, 10] },
-      },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",
