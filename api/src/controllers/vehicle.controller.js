@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     title,
     description,
     gear_box,
-    dealer_id,
+    dealerId: dealer_id,
   };
   console.log(newVehicle);
   Vehicle.create(newVehicle)
@@ -40,7 +40,6 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  //hacer update con el id de vehiculo
   console.log(req.params);
   const dealer_id = req.params.id_dealer;
   const vehicle_id = req.params.id_vehicle;
