@@ -15,61 +15,84 @@ exports.create = (req, res) => {
     model,
     title,
     description,
-    dealer_id,
-    vehicle_id,
+    dealerId: dealer_id,
+    vehicleId: vehicle_id,
   };
 
-  Accesory.create(newAccesory)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      try {
-        const errors = err.errors.map((error) => {
-          console.log("EEROS?");
-          return error.message;
-        });
-        res.status(400).send({
-          message: errors,
-        });
-      } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: "server error" });
+  Vehicle.findOne({ where: { id: vehicle_id, dealerId: dealer_id } }).then(
+    (data) => {
+      if (data === null) {
+        res.status(404).send({ message: "Vehicle not found" });
+      } else {
+        Accesory.create(newAccesory)
+          .then((data) => {
+            res.send(data);
+          })
+          .catch((err) => {
+            console.log(err);
+            try {
+              const errors = err.errors.map((error) => {
+                console.log("EEROS?");
+                return error.message;
+              });
+              res.status(400).send({
+                message: errors,
+              });
+            } catch (error) {
+              console.log(error);
+              res.status(400).send({ message: "server error" });
+            }
+          });
       }
-    });
+    }
+  );
 };
 
 exports.update = (req, res) => {
-  const dealer_id = req.params.dealer_id;
+  const { dealer_id, accesory_id } = req.params;
 
-  const accesory_id = req.params.accesory_id;
+  const { model, title, description, vehicle_id } = req.body;
 
-  console.log(req.body);
-  Accesory.update(req.body, {
-    where: { id: accesory_id, dealer_id: dealer_id },
-  })
-    .then((num) => {
-      console.log(num);
-      num[0] === 1
-        ? res.send({ message: `Accesory id:${accesory_id} updated` })
-        : res.status(404).send({ message: "Accesory not found" });
-    })
-    .catch((err) => {
-      console.log(err);
-      try {
-        const errors = err.errors.map((error) => {
-          console.log("EEROS?");
-          return error.message;
+  const updatedAccesory = {
+    model,
+    title,
+    description,
+    dealerId: dealer_id,
+    vehicleId: vehicle_id,
+  };
+
+  Vehicle.findOne({
+    where: { id: vehicle_id, dealerId: dealer_id },
+  }).then((data) => {
+    if (data === null) {
+      res.status(404).send({ message: "Vehicle not found" });
+    } else {
+      Accesory.update(updatedAccesory, {
+        where: { id: accesory_id, dealerId: dealer_id },
+      })
+        .then((num) => {
+          console.log(num);
+          num[0] === 1
+            ? res.send({ message: `Accesory id:${accesory_id} updated` })
+            : res.status(404).send({ message: "Accesory not found" });
+        })
+        .catch((err) => {
+          console.log(err);
+          try {
+            const errors = err.errors.map((error) => {
+              console.log("EEROS?");
+              return error.message;
+            });
+            res.status(400).send({
+              message: errors,
+            });
+          } catch (error) {
+            console.log(error);
+            res.status(400).send({ message: "server error" });
+          }
         });
-        res.status(400).send({
-          message: errors,
-        });
-      } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: "server error" });
-      }
-    });
+    }
+  });
 };
 
 exports.findOne = (req, res) => {
