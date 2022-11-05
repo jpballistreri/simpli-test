@@ -22,7 +22,6 @@ exports.create = (req, res) => {
       } else {
         Post.create(newPost)
           .then((data) => {
-            console.log("cata " + data);
             Post_vehicle.create({
               postId: data.id,
               vehicleId: vehicle_id,
@@ -127,7 +126,13 @@ exports.findOne = (req, res) => {
           { model: Dealer },
           {
             model: Post_vehicle,
-            include: [{ model: Vehicle, include: [{ model: Accesory }] }],
+            include: [
+              {
+                model: Vehicle,
+
+                include: [{ model: Accesory, where: { dealerId: dealer_id } }],
+              },
+            ],
           },
         ],
       })
