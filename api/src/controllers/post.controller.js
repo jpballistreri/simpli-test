@@ -43,23 +43,40 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  console.log(req.params);
-  const dealer_id = req.params.id_dealer;
-  const post_id = req.params.id_vehicle;
-  req.body.dealer_id = dealer_id;
-  console.log(req.body);
-  Post.update(req.body, { where: { id: post_id } })
+  const { price, vehicle_id } = req.body;
+  const dealer_id = req.params.dealer_id;
+  const post_id = req.params.post_id;
+  //req.body.dealer_id = dealer_id;
+  console.log(dealer_id, post_id);
+  console.log(vehicle_id, post_id);
+  const newPost = { price, dealerId: dealer_id };
+  console.log(newPost);
+  Post.update(newPost, { where: { id: post_id } })
     .then((num) => {
-      console.log(num);
-      num[0] === 1
-        ? res.send({ message: `Post id:${dealer_id} updated` })
-        : res.status(404).send({ message: "Post not found" });
+      if (num[0] === 1) {
+        Post_vehicle.update(
+          {
+            vehicleId: vehicle_id,
+          },
+          { where: { postId: post_id } }
+        )
+          .then((data) => {
+            console.log("datalen: " + data.length);
+            data.length === 1
+              ? res.send({ message: `Post id:${post_id} updated` })
+              : res.status(400).send({ message: "server error" });
+          })
+          .catch((err) => {
+            res.status(400).send({ message: "server error" });
+          });
+      } else {
+        res.status(404).send({ message: "Post not found" });
+      }
     })
     .catch((err) => {
       console.log(err);
       try {
         const errors = err.errors.map((error) => {
-          console.log("EEROS?");
           return error.message;
         });
         res.status(400).send({
