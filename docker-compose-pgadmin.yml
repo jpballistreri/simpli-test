@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  simpli_test_pgadmin:
+    image: dpage/pgadmin4
+    container_name: simpli_test_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./data_pgadmin:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:8082:80"

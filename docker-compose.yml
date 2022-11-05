@@ -29,20 +29,9 @@ services:
     volumes:
       - ./data_db:/var/lib/postgresql/data
     ports:
-      - 127.0.0.1:5432:5432
+      - 127.0.0.1:${DB_PORT_EXPOSE}:${DB_PORT}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d postgres -U ${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
-
-  simpli_test_pgadmin:
-    image: dpage/pgadmin4
-    container_name: simpli_test_pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    volumes:
-      - ./data_pgadmin:/var/lib/postgresql/data
-    ports:
-      - "127.0.0.1:8082:80"
