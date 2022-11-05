@@ -44,13 +44,10 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
   const { price, vehicle_id } = req.body;
-  const dealer_id = req.params.dealer_id;
-  const post_id = req.params.post_id;
-  //req.body.dealer_id = dealer_id;
-  console.log(dealer_id, post_id);
-  console.log(vehicle_id, post_id);
+  const { dealer_id, post_id } = req.params;
+
   const newPost = { price, dealerId: dealer_id };
-  console.log(newPost);
+
   Post.update(newPost, { where: { id: post_id } })
     .then((num) => {
       if (num[0] === 1) {
@@ -64,10 +61,21 @@ exports.update = (req, res) => {
             console.log("datalen: " + data.length);
             data.length === 1
               ? res.send({ message: `Post id:${post_id} updated` })
-              : res.status(400).send({ message: "server error" });
+              : res.status(400).send({ message: "server errorrrr" });
           })
           .catch((err) => {
-            res.status(400).send({ message: "server error" });
+            console.log(err);
+            try {
+              const errors = err.errors.map((error) => {
+                return error.message;
+              });
+              res.status(400).send({
+                message: errors,
+              });
+            } catch (error) {
+              console.log(error);
+              res.status(400).send({ message: "server error" });
+            }
           });
       } else {
         res.status(404).send({ message: "Post not found" });
@@ -95,7 +103,7 @@ exports.findOne = (req, res) => {
 
   post_id
     ? Post.findOne({
-        where: { id: post_id, dealer_id: dealer_id },
+        where: { id: post_id, dealerId: dealer_id },
         include: [
           { model: Dealer },
           { model: Post_vehicle, include: [{ model: Vehicle }] },
@@ -122,15 +130,31 @@ exports.findOne = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  const post_id = req.params.id_vehicle;
+  const { post_id, dealer_id } = req.params;
 
-  Post.destroy({ where: { id: post_id } })
+  Post_vehicle.destroy({ where: { postId: post_id } })
     .then((num) => {
-      num === 1
-        ? res.send({ message: `Post id: ${post_id} deleted` })
-        : res.status(404).send({ message: "Post not found" });
+      if (num === 1) {
+        Post.destroy({ where: { id: post_id, dealerId: dealer_id } }).then(
+          (num) => {
+            num === 1 && res.send({ message: `Post id: ${post_id} deleted` });
+            num === 0 && res.send({ message: "Post not found" });
+          }
+        );
+      } else res.status(404).send({ message: "Post not found" });
     })
     .catch((err) => {
-      res.status(500).send({ message: "db error" });
+      console.log(err);
+      try {
+        const errors = err.errors.map((error) => {
+          return error.message;
+        });
+        res.status(400).send({
+          message: errors,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(400).send({ message: "server error" });
+      }
     });
 };
