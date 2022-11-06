@@ -63,6 +63,9 @@ require("./routes/accesory.router")(app);
 ///api/dealer/:id/posts/
 require("./routes/post.router")(app);
 
+///api/dealer/:id/leads/
+require("./routes/lead.router")(app);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

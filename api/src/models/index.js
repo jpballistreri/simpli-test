@@ -47,4 +47,7 @@ db.post.hasMany(db.post_vehicle);
 db.post_vehicle.belongsTo(db.post);
 db.post_vehicle.belongsTo(db.vehicle);
 
+db.lead.belongsTo(db.post);
+db.post.hasMany(db.lead);
+
 module.exports = db;

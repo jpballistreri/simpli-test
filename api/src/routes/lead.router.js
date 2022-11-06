@@ -1,13 +1,10 @@
 module.exports = (app) => {
-  const vehicle = require("../controllers/vehicle.controller");
+  const lead = require("../controllers/lead.controller");
 
   var router = require("express").Router();
 
-  router.get("/api/dealer/:id_dealer/vehicles/?:id_vehicle?", vehicle.findOne);
-  //router.get("/api/dealer/vehicles/", vehicle.findOne);
-  router.post("/api/dealer/:id_dealer/vehicles/", vehicle.create);
-  router.put("/api/dealer/:id_dealer/vehicles/:id_vehicle", vehicle.update);
-  router.delete("/api/dealer/:id_dealer/vehicles/:id_vehicle", vehicle.delete);
+  router.get("/api/dealer/:dealer_id/leads/?:lead_id?", lead.findAll);
+  router.post("/api/dealer/:dealer_id/leads/", lead.create);
 
   app.use(router);
 };

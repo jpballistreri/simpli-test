@@ -17,9 +17,12 @@ module.exports = (sequelize, Sequelize) => {
       },
       tel: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       query: {
         type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 256] },
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -38,6 +41,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Lead.associate = (models) => {
     Lead.belongsTo(models.dealer);
+    Lead.belongsTo(models.post);
   };
 
   //Lead.sync({ force: true });
