@@ -5,16 +5,19 @@ const Accesory = db.accesory;
 const Post = db.post;
 const Post_vehicle = db.post_vehicle;
 const jwt = require("jsonwebtoken");
+const { accesory } = require("../models");
 
 exports.create = (req, res) => {
-  const { price, vehicle_id } = req.body;
+  const { price, title, vehicle_id } = req.body;
   const dealer_id = req.params.dealer_id;
 
   const newPost = {
     price,
+    title,
     dealerId: dealer_id,
   };
 
+  //Controla que el vehiculo ingresado sea del dealerId.
   Vehicle.findOne({ where: { id: vehicle_id, dealerId: dealer_id } }).then(
     (data) => {
       if (data === null) {
@@ -32,6 +35,7 @@ exports.create = (req, res) => {
             res.send(data);
           })
           .catch((err) => {
+            console.log("ERRORRRR");
             console.log(err);
             try {
               const errors = err.errors.map((error) => {
@@ -51,10 +55,10 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  const { price, vehicle_id } = req.body;
+  const { price, title, vehicle_id } = req.body;
   const { dealer_id, post_id } = req.params;
 
-  const newPost = { price, dealerId: dealer_id };
+  const newPost = { price, title, dealerId: dealer_id };
 
   //Controlar que solo guarde Vehiculo perteneciente al dealerId
 
@@ -123,16 +127,9 @@ exports.findOne = (req, res) => {
     ? Post.findOne({
         where: { id: post_id, dealerId: dealer_id },
         include: [
-          { model: Dealer },
           {
             model: Post_vehicle,
-            include: [
-              {
-                model: Vehicle,
-
-                include: [{ model: Accesory, where: { dealerId: dealer_id } }],
-              },
-            ],
+            include: [{ model: Vehicle, include: [{ model: accesory }] }],
           },
         ],
       })
