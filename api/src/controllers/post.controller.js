@@ -185,3 +185,7 @@ exports.delete = (req, res) => {
       }
     });
 };
+
+exports.search = (req, res) => {
+  console.log(req.query);
+};

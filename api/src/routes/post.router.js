@@ -3,6 +3,7 @@ module.exports = (app) => {
 
   var router = require("express").Router();
 
+  router.get("/api/dealer/:dealer_id/posts/search/", post.search);
   router.get("/api/dealer/:dealer_id/posts/?:post_id?", post.findOne);
   router.post("/api/dealer/:dealer_id/posts/", post.create);
   router.put("/api/dealer/:dealer_id/posts/:post_id", post.update);
