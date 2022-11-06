@@ -1,6 +1,7 @@
 const db = require("../models");
 const Vehicle = db.vehicle;
 const Dealer = db.dealer;
+const Accesory = db.accesory;
 //const Op = db.Sequelize.Op;
 const jwt = require("jsonwebtoken");
 
@@ -75,7 +76,7 @@ exports.findOne = (req, res) => {
   vehicle_id
     ? Vehicle.findOne({
         where: { id: vehicle_id, dealer_id: dealer_id },
-        include: [{ model: Dealer }],
+        include: [{ model: Dealer }, { model: Accesory }],
       })
         .then((data) => {
           data === null
@@ -87,7 +88,7 @@ exports.findOne = (req, res) => {
         })
     : Vehicle.findAll({
         where: { dealer_id: dealer_id },
-        include: [{ model: Dealer }],
+        include: [{ model: Dealer }, { model: Accesory }],
       }).then((data) => {
         console.log(data);
         data.length === 0

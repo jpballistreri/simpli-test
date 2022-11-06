@@ -9,7 +9,9 @@ exports.loadMockup = async () => {
     if (data.length != 0) {
       console.log("no se carga mockup");
     } else {
-      let stream = fs.createReadStream("./mock_data/vehicle_MOCK_DATA.csv");
+      let stream = fs.createReadStream(
+        "./mock_data/vehicles_dealer_1_MockupLoader.csv"
+      );
       let csvData = [];
       let csvStream = fastcsv
         .parse()
