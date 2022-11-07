@@ -1,3 +1,5 @@
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const db = require("../models");
 const Dealer = db.dealer;
 const Vehicle = db.vehicle;
@@ -183,6 +185,77 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.search = (req, res) => {
-  console.log(req.query);
+exports.search_original = (req, res) => {
+  const { text } = req.query;
+  const dealer_id = req.params.dealer_id;
+  console.log(text);
+
+  Post.findAll({
+    where: {
+      dealer_id: dealer_id,
+      title: { [Op.like]: "%" + text + "%" },
+    },
+    //include: [{ model: Dealer }],
+    include: [
+      {
+        model: Post_vehicle,
+        include: [
+          {
+            model: Vehicle,
+            where: { dealer_id: dealer_id },
+          },
+        ],
+      },
+    ],
+  }).then((data) => {
+    console.log(data);
+    data.length === 0
+      ? res.status(404).send({ message: `Posts not found ` })
+      : res.status(200).send(data);
+  });
+};
+
+exports.search = async (req, res) => {
+  const { text } = req.query;
+  const dealer_id = req.params.dealer_id;
+  console.log(text);
+
+  db.sequelize
+    .query(
+      `SELECT 
+      posts.id post_id,
+      posts.title post_title, 
+      posts.price post_price, 
+      vehicles.title vehicle_title, 
+      vehicles.description vehicle_description, 
+      accesories.title accesories_title,
+      accesories.description accesories_description
+      
+      FROM posts 
+      JOIN post_vehicles
+      ON post_vehicles.post_id = posts.id
+      JOIN vehicles
+      ON vehicles.id = post_vehicles.vehicle_id
+      JOIN accesories
+      ON accesories.vehicle_id = vehicles.id
+  
+  WHERE 
+  LOWER(posts.title) LIKE LOWER('%` +
+        text +
+        `%') 
+  or 
+  LOWER(vehicles.title) LIKE LOWER('%` +
+        text +
+        `%') 
+  or
+  LOWER(accesories.title) LIKE LOWER('%` +
+        text +
+        `%')`
+    )
+    .then((data) => {
+      console.log(data);
+      data[0].length > 0
+        ? res.status(200).send(data[0])
+        : res.status(404).send({ message: `Posts not found ` });
+    });
 };
