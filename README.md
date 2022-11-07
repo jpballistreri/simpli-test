@@ -9,7 +9,6 @@ API Nodejs - DB Postgres
 - sequelize (ORM)
 - pg (postgres)
 - fast-csv (carga de mockups)
-  sequelize
 
 Se deja archivo simpli-test.postman_collection exportado de Postman en ./
 
