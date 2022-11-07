@@ -1,5 +1,18 @@
 # simpli-test
 
+## Stack / librerias
+
+API Nodejs - DB Postgres
+
+- express
+- jsonwebtoken
+- sequelize (ORM)
+- pg (postgres)
+- fast-csv (carga de mockups)
+  sequelize
+
+Se deja archivo simpli-test.postman_collection exportado de Postman en ./
+
 ## Despliegue de stack dockerizado:
 
 - Renombrar archivo de variables de entorno ".env\_\_" a ".env"
@@ -15,11 +28,25 @@ Se generan 2 contenedores.
     simpli_test_db
         - port: 5432
 
-> Si simpli_test_api no encuentra datos en simpl_test_db, carga los siguientes mockup desde ./mock_data
+> Si simpli_test_api no encuentra datos en simpl_test_db, carga los siguientes mockup desde ./api/mock_data
 >
 > - 10 dealers.
-> - 20 vehiculos pertenecientes al dealer_id 1.
+> - 20 vehículos pertenecientes al dealer_id 1.
 > - 40 accesorios pertenecuentes al dealer_id 1.
+
+Para generar JWT:
+
+- Hacer request POST a 'localhost:3002/api/login' enviando un userId y userName ficticios en el body.
+
+  body ej:
+
+        {
+        "userId": "d324234",
+        "userName": "Juan"
+        }
+
+- Se genera JWT, devolviendo cookie con el mismo.
+- El JWT es controlado via middleware.
 
 ### Opcional - pgadmin.
 
@@ -33,18 +60,22 @@ user: username@email.com
 
 passw: password
 
-## Mejoras
+# Mejoras
 
 Mejoras hechas:
 
 - Tabla Posts y Leads relacionadas 1-n
 
-- Endpoints con metodo GET, devuelve todos los datos de la busqueda al no ingresar {id},
+- Endpoints con método GET, devuelve todos los datos de la búsqueda al no ingresar {id}
 
 Performance/Mejoras/Pruebas que se podrían hacer:
 
 - Manejo de transacciones con Sequelize.
+- Paginadores
+- Modelado de JSON de respuesta en /api/dealer/{id}/posts/search
+- Login con user/pass en db.
 - Indices a las tablas relacionales
-  > por ej, en el caso de/api/dealer/{id}/posts/search?text=”post title | vehicle name | accessory name”
+  > por ej, en el caso de /api/dealer/{id}/posts/search?text= post title | vehicle name | accessory name”
   > para no tener que hacer un fullscan, se podrían aplicar indices a los ids de las tablas.
-- cache inicial/loader para trabajar datos en memoria.
+- ExpressCache para consultas.
+- Automatización de pruebas.
