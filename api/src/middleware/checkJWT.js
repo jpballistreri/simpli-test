@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const checkJWT = (req, res, next) => {
-  //console.log(req.headers.token);
   if (req.headers.cookie) {
-    const token = req.headers.cookie.split("=")[1];
+    const token = req.headers.cookie.split(";")[1].split("=")[1];
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
       decoded && next();
