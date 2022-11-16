@@ -22,6 +22,31 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         validate: { len: [1, 16] },
       },
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: { len: [1, 4] },
+      },
+      type_gear_box: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 32] },
+      },
+      motor: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 32] },
+      },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: { len: [1, 32] },
+      },
+      doors: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: { len: [1, 2] },
+      },
       pic_url: {
         type: Sequelize.STRING,
         allowNull: true,
