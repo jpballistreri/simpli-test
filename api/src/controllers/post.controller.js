@@ -23,7 +23,7 @@ exports.create = (req, res) => {
 
   //Controla que el vehiculo ingresado sea del dealerId.
   Vehicle.findOne({
-    where: { id: vehicle_id ? vehicle_id : 0, dealerId: dealer_id },
+    where: { id: vehicle_id, dealerId: dealer_id },
   }).then((data) => {
     if (data === null) {
       res.status(404).send({ message: "Vehicle not found" });
@@ -59,10 +59,10 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  const { price, title, vehicle_id } = req.body;
+  const { price, vehicle_id, advance, stock } = req.body;
   const { dealer_id, post_id } = req.params;
 
-  const newPost = { price, title, dealerId: dealer_id };
+  const newPost = { ...req.body, dealerId: dealer_id };
 
   //Controlar que solo guarde Vehiculo perteneciente al dealerId
 
