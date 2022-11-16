@@ -4,7 +4,7 @@ import { NavbarWrapper } from "./styles/NavbarStyles";
 function Navbar({ open }) {
   return (
     <NavbarWrapper open={open}>
-      <a href="/main">Inicio</a>
+      <a href="/">Inicio</a>
       <a href="#">Link</a>
       <a href="#">Link</a>
       <a href="#">Link</a>

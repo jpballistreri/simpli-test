@@ -1,31 +1,48 @@
 import { useState, useEffect } from "react";
-import ItemCar from "../components/itemCar/itemCar";
+import ItemPost from "../components/itemPost/itemPost";
 import styled from "styled-components";
 import { Container as GridContainer, Row, Col } from "react-grid-system";
 import Hero from "../components/Hero/Hero";
 
 function MainView() {
-  const [cars, setCars] = useState([]);
+  const [items, setCars] = useState([]);
 
   useEffect(() => {
-    // update update the list of cars
-    // when the component is rendered for the first time
-    update();
+    updateCarList();
   }, []);
 
-  // This function updates the component with the
-  // current todo data stored in the server
-  function update() {
-    fetch("http://localhost:8000/api/cars?populate=*", {
+  function updateCarList() {
+    fetch("http://localhost:3002/api/dealer/1/vehicles/", {
       headers: {
-        Accept: "application/json",
-        Authorization:
-          "Bearer d5ee6bce4d25bc83f5f3cf3c655ee5c344fe9f003d5c644f727db7ecc8bf68fb83c1c99ed988363887bd57b9d7ed5b920076c06b759ba6c03ab9be76f894733d550bc4ee89b566cf31c45e81283ca0ea0309e85376f37d5fe70b4af4ab428cf70573683db6b9b1fba1c31873038f5da22cebdb6224e15ccf3dae592b88217527",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
       },
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((res) => {
-        setCars(res.data);
+        console.log(res);
+        setCars(res);
+      });
+  }
+
+  function getToken() {
+    fetch("http://localhost:3002/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
+      },
+      body: JSON.stringify({
+        userId: "12121",
+        userName: "Juan",
+      }),
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        //setCars(res);
       });
   }
 
@@ -39,22 +56,12 @@ function MainView() {
     <>
       <Hero />
 
-      <GridContainer>
-        <Title>
-          <Row>
-            <Col xs={4}>Toyota</Col>
-            <Col xs={4} style={{ textAlign: "center" }}>
-              CARS
-            </Col>
-          </Row>
-        </Title>
-      </GridContainer>
-      <GridContainer>
+      <GridContainer style={{ marginTop: "50px", backgroundColor: "#f4f4f5" }}>
         <Row>
-          {cars.map((car, i) => {
+          {items.map((item, i) => {
             return (
               <Col xs={12} xl={6} xxl={4}>
-                <ItemCar car={car} />
+                <ItemPost item={item} />
               </Col>
             );
           })}

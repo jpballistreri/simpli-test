@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-function ItemCar({ car }) {
-  const { model, description } = car.attributes;
-  const picUrl =
-    car.attributes.pics.data != null
-      ? "http://localhost:8000" +
-        car.attributes.pics.data[0].attributes.formats.thumbnail.url
-      : "";
+function ItemPost({ item }) {
+  const { title, description, pic_url, price } = item;
 
   const Container = styled.div`
     text-align: center;
@@ -24,25 +19,23 @@ function ItemCar({ car }) {
       cursor: pointer;
     }
   `;
-  const Title = styled.h2``;
-  const Description = styled.p``;
+  const Title = styled.p``;
+  const Price = styled.h2``;
   const Image = styled.img`
     margin-left: auto;
     margin-right: auto;
     width: 200px;
   `;
 
-  console.log(car);
-  console.log(picUrl);
   return (
     <Container>
-      <Title>{model}</Title>
+      <Title>{title}</Title>
 
-      <Description>{description}</Description>
-      <Image src={picUrl} />
+      <Price>{price}</Price>
+      <Image src={pic_url} />
       <Button>Comprar</Button>
     </Container>
   );
 }
 
-export default ItemCar;
+export default ItemPost;
