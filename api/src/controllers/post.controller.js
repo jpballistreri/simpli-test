@@ -10,50 +10,52 @@ const jwt = require("jsonwebtoken");
 const { accesory } = require("../models");
 
 exports.create = (req, res) => {
-  const { price, title, vehicle_id } = req.body;
+  const { price, vehicle_id, advance, stock } = req.body;
   const dealer_id = req.params.dealer_id;
 
   const newPost = {
     price,
-    title,
+    advance,
+    stock,
+
     dealerId: dealer_id,
   };
 
   //Controla que el vehiculo ingresado sea del dealerId.
-  Vehicle.findOne({ where: { id: vehicle_id, dealerId: dealer_id } }).then(
-    (data) => {
-      if (data === null) {
-        res.status(404).send({ message: "Vehicle not found" });
-      } else {
-        Post.create(newPost)
-          .then((data) => {
-            Post_vehicle.create({
-              postId: data.id,
-              vehicleId: vehicle_id,
-            });
-            return data;
-          })
-          .then((data) => {
-            res.send(data);
-          })
-          .catch((err) => {
-            console.log("ERRORRRR");
-            console.log(err);
-            try {
-              const errors = err.errors.map((error) => {
-                return error.message;
-              });
-              res.status(400).send({
-                message: errors,
-              });
-            } catch (error) {
-              console.log(error);
-              res.status(400).send({ message: "server error" });
-            }
+  Vehicle.findOne({
+    where: { id: vehicle_id ? vehicle_id : 0, dealerId: dealer_id },
+  }).then((data) => {
+    if (data === null) {
+      res.status(404).send({ message: "Vehicle not found" });
+    } else {
+      Post.create(newPost)
+        .then((data) => {
+          Post_vehicle.create({
+            postId: data.id,
+            vehicleId: vehicle_id,
           });
-      }
+          return data;
+        })
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          console.log("ERRORRRR");
+          console.log(err);
+          try {
+            const errors = err.errors.map((error) => {
+              return error.message;
+            });
+            res.status(400).send({
+              message: errors,
+            });
+          } catch (error) {
+            console.log(error);
+            res.status(400).send({ message: "server error" });
+          }
+        });
     }
-  );
+  });
 };
 
 exports.update = (req, res) => {

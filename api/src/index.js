@@ -7,6 +7,8 @@ require("dotenv").config();
 const dealerMockupLoader = require("./utils/mockup_loader/dealerMockupLoader");
 const vehicleMockupLoader = require("./utils/mockup_loader/vehicleMockupLoader");
 const accesoryMockupLoader = require("./utils/mockup_loader/accesoryMockupLoader");
+const postMockupLoader = require("./utils/mockup_loader/postMockupLoader");
+const post_vehicleMockupLoader = require("./utils/mockup_loader/post_vehicleMockupLoader");
 
 const app = express();
 const db = require("./models");
@@ -44,6 +46,14 @@ db.sequelize
   .then(() => {
     console.log("cargando accesory mockup");
     accesoryMockupLoader.loadMockup();
+  })
+  .then(() => {
+    console.log("cargando post mockup");
+    postMockupLoader.loadMockup();
+  })
+  .then(() => {
+    console.log("cargando post_vehicle mockup");
+    post_vehicleMockupLoader.loadMockup();
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);

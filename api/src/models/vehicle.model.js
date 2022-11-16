@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
       year: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validate: { len: [1, 4] },
+        validate: { isNumeric: true, len: [1, 4] },
       },
       type_gear_box: {
         type: Sequelize.STRING,
