@@ -12,7 +12,7 @@ function MainView() {
   }, []);
 
   function updateCarList() {
-    fetch("http://localhost:3002/api/dealer/1/vehicles/", {
+    fetch("http://localhost:3002/api/dealer/1/posts/", {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": "true",
@@ -56,7 +56,7 @@ function MainView() {
     <>
       <Hero />
 
-      <GridContainer style={{ marginTop: "50px", backgroundColor: "#f4f4f5" }}>
+      <GridContainer style={{ marginTop: "50px", backgroundColor: "#cdd7de" }}>
         <Row>
           {items.map((item, i) => {
             return (
