@@ -22,6 +22,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         validate: { len: [1, 16] },
       },
+      pic_url: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        validate: { len: [1, 128] },
+      },
       createdAt: {
         type: Sequelize.DATE,
         field: "created_at",
@@ -42,7 +47,7 @@ module.exports = (sequelize, Sequelize) => {
     Vehicle.hasMany(models.accesory);
     Vehicle.hasMany(models.post_vehicle);
   };
-  //Vehicle.sync({ force: true });
+  //Vehicle.sync({ alter: true });
 
   return Vehicle;
 };
