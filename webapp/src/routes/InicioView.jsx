@@ -5,12 +5,6 @@ import { Container as GridContainer, Row, Col } from "react-grid-system";
 import Hero from "../components/Hero/Hero";
 import { Link } from "react-router-dom";
 
-const Title = styled.h2`
-  text-align: left;
-  background-color: #eb0a1e;
-  color: #ffe4da;
-`;
-
 const ButtonLoginContainer = styled.div`
   text-align: center;
   margin: 20px;

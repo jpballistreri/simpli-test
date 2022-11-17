@@ -45,7 +45,6 @@ function LoginView() {
   const [message, setMessage] = useState(null);
 
   const handleInputForm = (e) => {
-    console.log(e.target);
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
