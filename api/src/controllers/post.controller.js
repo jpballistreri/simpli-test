@@ -10,14 +10,14 @@ const jwt = require("jsonwebtoken");
 const { accesory } = require("../models");
 
 exports.create = (req, res) => {
-  const { price, vehicle_id, advance, stock } = req.body;
+  const { title, price, vehicle_id, advance, stock } = req.body;
   const dealer_id = req.params.dealer_id;
 
   const newPost = {
+    title,
     price,
     advance,
     stock,
-
     dealerId: dealer_id,
   };
 
