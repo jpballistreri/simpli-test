@@ -5,9 +5,10 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import { TbSteeringWheel } from "react-icons/tb";
 import { BiCar } from "react-icons/bi";
 import { BsDoorClosed } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function ItemPost({ item }) {
-  const { advance, pic_url, price, post_vehicles } = item;
+  const { advance, pic_url, price, post_vehicles, id } = item;
 
   const Container = styled.div`
     text-align: left;
@@ -37,57 +38,66 @@ function ItemPost({ item }) {
   `;
 
   return (
-    <Container>
-      <div style={{ backgroundColor: "#cdd7de", borderRadius: "5px" }}>
-        <Image src={"https://freepngimg.com/thumb/car/4-2-car-png-hd.png"} />
-      </div>
-      <Title>{post_vehicles[0].vehicle.title}</Title>
-      <Price>${price}</Price>
-      <Title>Anticipo {advance}</Title>
+    <Link
+      to={`/autos/${id}`}
+      style={{
+        textDecoration: "none",
+        color: "black",
+      }}
+    >
+      <Container>
+        <div style={{ backgroundColor: "#cdd7de", borderRadius: "5px" }}>
+          <Image src={"https://freepngimg.com/thumb/car/4-2-car-png-hd.png"} />
+        </div>
+        <Title>{post_vehicles[0].vehicle.title}</Title>
+        <Price>${price}</Price>
+        <Title>Anticipo ${advance}</Title>
 
-      <GridContainer style={{}}>
-        <Row>
-          <Col
-            xs={3}
-            style={{
-              borderRight: "1px solid #ccc",
-              textAlign: "center",
-            }}
-          >
-            <AiOutlineCalendar /> <Title>{post_vehicles[0].vehicle.year}</Title>
-          </Col>
-          <Col
-            style={{
-              borderRight: "1px solid #ccc",
-              borderLeft: "1px solid #ccc",
-              textAlign: "center",
-            }}
-            xs={3}
-          >
-            <TbSteeringWheel />
-            <Title>{post_vehicles[0].vehicle.gear_box}</Title>
-          </Col>
-          <Col
-            style={{
-              borderRight: "1px solid #ccc",
-              borderLeft: "1px solid #ccc",
-              textAlign: "center",
-            }}
-            xs={3}
-          >
-            <BiCar />
-            <Title>{post_vehicles[0].vehicle.type}</Title>
-          </Col>
-          <Col
-            style={{ borderLeft: "1px solid #ccc", textAlign: "center" }}
-            xs={3}
-          >
-            <BsDoorClosed />
-            <Title>{post_vehicles[0].vehicle.doors}</Title>
-          </Col>
-        </Row>
-      </GridContainer>
-    </Container>
+        <GridContainer style={{}}>
+          <Row>
+            <Col
+              xs={3}
+              style={{
+                borderRight: "1px solid #ccc",
+                textAlign: "center",
+              }}
+            >
+              <AiOutlineCalendar />{" "}
+              <Title>{post_vehicles[0].vehicle.year}</Title>
+            </Col>
+            <Col
+              style={{
+                borderRight: "1px solid #ccc",
+                borderLeft: "1px solid #ccc",
+                textAlign: "center",
+              }}
+              xs={3}
+            >
+              <TbSteeringWheel />
+              <Title>{post_vehicles[0].vehicle.gear_box}</Title>
+            </Col>
+            <Col
+              style={{
+                borderRight: "1px solid #ccc",
+                borderLeft: "1px solid #ccc",
+                textAlign: "center",
+              }}
+              xs={3}
+            >
+              <BiCar />
+              <Title>{post_vehicles[0].vehicle.type}</Title>
+            </Col>
+            <Col
+              style={{ borderLeft: "1px solid #ccc", textAlign: "center" }}
+              xs={3}
+            >
+              <BsDoorClosed />
+              <Title>{post_vehicles[0].vehicle.doors}</Title>
+            </Col>
+          </Row>
+        </GridContainer>
+      </Container>
+    </Link>
   );
 }
 
