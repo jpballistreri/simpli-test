@@ -5,6 +5,7 @@ import NovedadesView from "./routes/NovedadesView";
 import UltimasOfertasView from "./routes/UltimasOfertasView";
 import SobreNosotrosView from "./routes/SobreNosotrosView";
 import AutosView from "./routes/PostView";
+import LoginView from "./routes/LoginView";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/ultimas_ofertas" element={<UltimasOfertasView />} />
         <Route path="/sobre_nosotros" element={<SobreNosotrosView />} />
         <Route path="/autos/:id" element={<AutosView />} />
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </BrowserRouter>
   );

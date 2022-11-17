@@ -7,36 +7,35 @@ import { BiCar } from "react-icons/bi";
 import { BsDoorClosed } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+const Container = styled.div`
+  text-align: left;
+
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 21px;
+  background: white;
+`;
+const Button = styled.button`
+  &:hover {
+    background-color: lightblue;
+    cursor: pointer;
+  }
+`;
+const Title = styled.p``;
+const Price = styled.h2`
+  margin: 0;
+`;
+const Image = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+`;
+
 function ItemPost({ item }) {
   const { advance, pic_url, price, post_vehicles, id } = item;
-  console.log(item);
-
-  const Container = styled.div`
-    text-align: left;
-
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    margin-bottom: 21px;
-    background: white;
-  `;
-  const Button = styled.button`
-    &:hover {
-      background-color: lightblue;
-      cursor: pointer;
-    }
-  `;
-  const Title = styled.p``;
-  const Price = styled.h2`
-    margin: 0;
-  `;
-  const Image = styled.img`
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  `;
 
   return (
     <Link

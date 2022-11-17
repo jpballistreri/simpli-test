@@ -8,6 +8,7 @@ function Navbar({ open }) {
       <a href="/novedades">Novedades</a>
       <a href="/ultimas_ofertas">Ultimas ofertas</a>
       <a href="/sobre_nosotros">Sobre nosotros</a>
+      <a href="/login">Login</a>
     </NavbarWrapper>
   );
 }
