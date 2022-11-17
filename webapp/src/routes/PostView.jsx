@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "../components/Post/Post";
 import { useNavigate } from "react-router-dom";
+import LeadOk from "../components/LeadOk/LeadOk";
 
 function PostView() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ function PostView() {
   const [post, setPost] = useState({});
   const [loading, setLoading] = useState(true);
   const [loged, setLoged] = useState(false);
+  const [leadSend, setLeadSend] = useState(false);
 
   useEffect(() => {
     getPost();
@@ -40,13 +42,17 @@ function PostView() {
     return <p>Cargando...</p>;
   }
 
+  if (leadSend) {
+    return <LeadOk />;
+  }
+
   if (loged === true) {
     return (
       <div>
         <h3>
           Inicio {">"} Auto {">"} {post.post_vehicles[0].vehicle.title}
         </h3>
-        <Post post={post} />
+        <Post post={post} setLeadSend={setLeadSend} />
       </div>
     );
   }

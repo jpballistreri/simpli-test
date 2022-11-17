@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import bgBanner from "./heroBg.png";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeBanner = styled.div`
   width: 100%;
@@ -25,6 +26,10 @@ const Button = styled.button`
   color: white;
   padding: 10px;
   border-width: thin;
+  :hover {
+    cursor: pointer;
+    background-color: #1a35b8;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -33,6 +38,7 @@ const TextContainer = styled.div`
 `;
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <>
       <WelcomeBanner>
@@ -45,7 +51,13 @@ export default function Hero() {
             No esperes más para obtener tu 0km, tenemos las mejores ofertas y
             planes de financiación
           </Description>
-          <Button>Conocer ofertas</Button>
+          <Button
+            onClick={() => {
+              navigate("/ultimas_ofertas");
+            }}
+          >
+            Conocer ofertas
+          </Button>
         </TextContainer>
       </WelcomeBanner>
     </>

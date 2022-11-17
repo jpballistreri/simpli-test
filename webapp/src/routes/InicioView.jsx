@@ -56,26 +56,6 @@ function MainView() {
       });
   }
 
-  function getToken() {
-    fetch("http://localhost:3002/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true",
-      },
-      body: JSON.stringify({
-        userId: "12121",
-        userName: "Juan",
-      }),
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        //setCars(res);
-      });
-  }
-
   if (loged === true)
     return (
       <>
@@ -87,7 +67,7 @@ function MainView() {
             <Row>
               {items.map((item, i) => {
                 return (
-                  <Col xs={12} xl={6} xxl={4}>
+                  <Col xs={12} xl={6} xxl={4} key={i}>
                     <ItemPost item={item} />
                   </Col>
                 );

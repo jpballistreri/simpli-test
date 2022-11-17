@@ -6,11 +6,11 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import { TbSteeringWheel, TbEngine } from "react-icons/tb";
 import { BiCar } from "react-icons/bi";
 import { BsDoorClosed } from "react-icons/bs";
+import Lead from "../Lead/Lead";
 
-function Post({ post }) {
+function Post({ post, setLeadSend }) {
   const Container = styled.div`
     text-align: left;
-
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -56,7 +56,7 @@ function Post({ post }) {
           </div>
           <Price>Caracteristicas destacadas</Price>
           <GridContainer style={{ fontSize: "10px" }}>
-            <Row>
+            <Row style={{ justifyContent: "center" }}>
               <Col
                 xs={2}
                 style={{
@@ -127,6 +127,7 @@ function Post({ post }) {
             <Price>${post.price}</Price>
             <Price>Reserva este auto por ${post.advance}</Price>
           </Container>
+          <Lead post_id={post.id} setLeadSend={setLeadSend} />
         </Col>
       </Row>
     </GridContainer>
