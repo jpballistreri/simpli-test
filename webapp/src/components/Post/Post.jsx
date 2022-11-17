@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Container as GridContainer, Row, Col } from "react-grid-system";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { TbSteeringWheel } from "react-icons/tb";
+import { TbSteeringWheel, TbEngine } from "react-icons/tb";
 import { BiCar } from "react-icons/bi";
 import { BsDoorClosed } from "react-icons/bs";
 
@@ -25,7 +25,12 @@ function Post({ post }) {
       cursor: pointer;
     }
   `;
-  const Title = styled.p``;
+  const Title = styled.h1`
+    margin: 10px 0px;
+  `;
+  const Stock = styled.p`
+    margin: 0px 0px 10px;
+  `;
   const Price = styled.h2`
     margin: 0;
   `;
@@ -36,58 +41,95 @@ function Post({ post }) {
   `;
 
   return (
-    <Container>
-      <div style={{ backgroundColor: "#cdd7de", borderRadius: "5px" }}>
-        <Image src={"https://freepngimg.com/thumb/car/4-2-car-png-hd.png"} />
-      </div>
-      <Title>{post.post_vehicles[0].vehicle.title}</Title>
-      <Price>${post.price}</Price>
-      <Title>Anticipo ${post.advance}</Title>
+    <GridContainer style={{}}>
+      <Row>
+        <Col
+          xs={12}
+          xl={6}
+          style={{
+            borderRight: "1px solid #ccc",
+            textAlign: "center",
+          }}
+        >
+          <div style={{ backgroundColor: "#cdd7de", borderRadius: "5px" }}>
+            <Image src={post.post_vehicles[0].vehicle.pic_url} />
+          </div>
+          <Price>Caracteristicas destacadas</Price>
+          <GridContainer style={{ fontSize: "10px" }}>
+            <Row>
+              <Col
+                xs={2}
+                style={{
+                  borderRight: "1px solid #ccc",
+                  textAlign: "center",
+                }}
+              >
+                <AiOutlineCalendar style={{ fontSize: "30px" }} />{" "}
+                <Title>{post.post_vehicles[0].vehicle.year}</Title>
+              </Col>
+              <Col
+                style={{
+                  borderRight: "1px solid #ccc",
+                  borderLeft: "1px solid #ccc",
+                  textAlign: "center",
+                }}
+                xs={2}
+              >
+                <TbEngine style={{ fontSize: "30px" }} />
+                <Title>{post.post_vehicles[0].vehicle.motor}</Title>
+              </Col>
+              <Col
+                style={{
+                  borderRight: "1px solid #ccc",
+                  borderLeft: "1px solid #ccc",
+                  textAlign: "center",
+                }}
+                xs={2}
+              >
+                <TbSteeringWheel style={{ fontSize: "30px" }} />
+                <Title>{post.post_vehicles[0].vehicle.type_gear_box}</Title>
+              </Col>
+              <Col
+                style={{
+                  borderRight: "1px solid #ccc",
+                  borderLeft: "1px solid #ccc",
+                  textAlign: "center",
+                }}
+                xs={2}
+              >
+                <BiCar style={{ fontSize: "30px" }} />
+                <Title>{post.post_vehicles[0].vehicle.type}</Title>
+              </Col>
+              <Col
+                style={{ borderLeft: "1px solid #ccc", textAlign: "center" }}
+                xs={3}
+              >
+                <BsDoorClosed style={{ fontSize: "30px" }} />
+                <Title>{post.post_vehicles[0].vehicle.doors}</Title>
+              </Col>
+            </Row>
+          </GridContainer>
+        </Col>
 
-      <GridContainer style={{}}>
-        <Row>
-          <Col
-            xs={3}
-            style={{
-              borderRight: "1px solid #ccc",
-              textAlign: "center",
-            }}
-          >
-            <AiOutlineCalendar />{" "}
-            <Title>{post.post_vehicles[0].vehicle.year}</Title>
-          </Col>
-          <Col
-            style={{
-              borderRight: "1px solid #ccc",
-              borderLeft: "1px solid #ccc",
-              textAlign: "center",
-            }}
-            xs={3}
-          >
-            <TbSteeringWheel />
-            <Title>{post.post_vehicles[0].vehicle.gear_box}</Title>
-          </Col>
-          <Col
-            style={{
-              borderRight: "1px solid #ccc",
-              borderLeft: "1px solid #ccc",
-              textAlign: "center",
-            }}
-            xs={3}
-          >
-            <BiCar />
-            <Title>{post.post_vehicles[0].vehicle.type}</Title>
-          </Col>
-          <Col
-            style={{ borderLeft: "1px solid #ccc", textAlign: "center" }}
-            xs={3}
-          >
-            <BsDoorClosed />
-            <Title>{post.post_vehicles[0].vehicle.doors}</Title>
-          </Col>
-        </Row>
-      </GridContainer>
-    </Container>
+        <Col
+          xs={12}
+          xl={6}
+          style={{
+            borderRight: "1px solid #ccc",
+            textAlign: "center",
+          }}
+        >
+          <Container>
+            <Title>{post.post_vehicles[0].vehicle.title}</Title>
+            <Stock>
+              {post.stock > 0 ? "Stock disponible" : "No hay stock"}{" "}
+            </Stock>
+            <Price>${post.price}</Price>
+            <Price>Reserva este auto por ${post.advance}</Price>
+          </Container>
+        </Col>
+      </Row>
+    </GridContainer>
   );
 }
 

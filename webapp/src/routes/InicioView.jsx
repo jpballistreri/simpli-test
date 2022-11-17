@@ -55,18 +55,23 @@ function MainView() {
   return (
     <>
       <Hero />
-
-      <GridContainer style={{ marginTop: "50px", backgroundColor: "#cdd7de" }}>
-        <Row>
-          {items.map((item, i) => {
-            return (
-              <Col xs={12} xl={6} xxl={4}>
-                <ItemPost item={item} />
-              </Col>
-            );
-          })}
-        </Row>
-      </GridContainer>
+      {items.length > 0 ? (
+        <GridContainer
+          style={{ marginTop: "50px", backgroundColor: "#cdd7de" }}
+        >
+          <Row>
+            {items.map((item, i) => {
+              return (
+                <Col xs={12} xl={6} xxl={4}>
+                  <ItemPost item={item} />
+                </Col>
+              );
+            })}
+          </Row>
+        </GridContainer>
+      ) : (
+        <h2>No hay posts</h2>
+      )}
     </>
   );
 }

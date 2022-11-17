@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import NovedadesView from "./routes/NovedadesView";
 import UltimasOfertasView from "./routes/UltimasOfertasView";
 import SobreNosotrosView from "./routes/SobreNosotrosView";
-import AutosView from "./routes/AutosView";
+import AutosView from "./routes/PostView";
 
 function App() {
   return (

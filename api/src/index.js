@@ -47,14 +47,14 @@ db.sequelize
     console.log("cargando accesory mockup");
     accesoryMockupLoader.loadMockup();
   })
-  .then(() => {
-    console.log("cargando post mockup");
-    postMockupLoader.loadMockup();
-  })
-  .then(() => {
-    console.log("cargando post_vehicle mockup");
-    post_vehicleMockupLoader.loadMockup();
-  })
+  //.then(() => {
+  //  console.log("cargando post mockup");
+  //  postMockupLoader.loadMockup();
+  //})
+  //.then(() => {
+  //  console.log("cargando post_vehicle mockup");
+  //  post_vehicleMockupLoader.loadMockup();
+  //})
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });

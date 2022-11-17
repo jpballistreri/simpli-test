@@ -1,21 +1,21 @@
-model,title,description,gear_box,year,type_gear_box,motor,type,doors,dealer_id
-AA8bJigV,5 Series,"Poisoning by unsp drugs acting on muscles, assault, sequela",3,2022,Automatico,Motor 1.6v,Sedan,4,1
-JZRbKYGX,Civic,"Pnctr w/o fb of unsp great toe w damage to nail, init",1,2022,Automatico,Motor 1.6v,Sedan,4,1
-465PSFSe,Milan,"Injury of radial nerve at wrs/hnd lv of left arm, init",1,2022,Automatico,Motor 1.6v,Sedan,4,1
-TCErkZaU,Land Cruiser,"External constriction of unspecified ear, sequela",6,2022,Automatico,Motor 1.6v,Sedan,4,1
-ls9pyD3o,Quest,Kitchen in prison as place,3,2022,Automatico,Motor 1.6v,Sedan,4,1
-fDGLo7n9,Astro,"Unsp injury of right shoulder and upper arm, init encntr",5,2022,Automatico,Motor 1.6v,Sedan,4,1
-pcScPhjF,F150,Athscl bypass of cor art of transplanted heart w ang pctrs,1,2022,Automatico,Motor 1.6v,Sedan,4,1
-0Ol5YoTl,3500 Club Coupe,Dislocation of MCP joint of left index finger,5,2022,Automatico,Motor 1.6v,Sedan,4,1
-04rD3uUq,Aventador,"Biological mother, perpetrator of maltreatment and neglect",3,2022,Automatico,Motor 1.6v,Sedan,4,1
-Y3ncoV9D,850,"Oth disp fx of third cervcal vert, subs for fx w nonunion",2,2022,Automatico,Motor 1.6v,Sedan,4,1
-9NI46ZVu,C70,"Poisn by oth antacids & anti-gstrc-sec drugs, slf-hrm, init",3,2022,Automatico,Motor 1.6v,Sedan,4,1
-oXI04lU1,SLK-Class,Intentional self-harm by sharp glass,2,2022,Automatico,Motor 1.6v,Sedan,4,1
-NtTm3PqL,Bonneville,"Oth nondisp fx of upper end of unsp humerus, init",5,2022,Automatico,Motor 1.6v,Sedan,4,1
-RoumKRwp,Montero,"Displ oblique fx shaft of unsp rad, 7thG",3,2022,Automatico,Motor 1.6v,Sedan,4,1
-crQCXySa,Sentra,"Other superficial bite of unsp lesser toe(s), init encntr",4,2022,Automatico,Motor 1.6v,Sedan,4,1
-ykySqShe,Escalade EXT,Damage to pelvic organs fol (induced) term of pregnancy,1,2022,Automatico,Motor 1.6v,Sedan,4,1
-fzumsMBT,rio,"Monteggia's fx right ulna, subs for clos fx w delay heal",6,2022,Automatico,Motor 1.6v,Sedan,4,1
-rKm21YH3,Escort,"Partial traumatic amputation at knee level, right lower leg",5,2022,Automatico,Motor 1.6v,Sedan,4,1
-y42RlYqv,Avalanche 2500,"Oth comp specific to multiple gest, third trimester, fetus 2",3,2022,Automatico,Motor 1.6v,Sedan,4,1
-4HbxVDzD,2500,Obstructed labor due to breech presentation,3,2022,Automatico,Motor 1.6v,Sedan,4,1
+model,title,description,gear_box,year,type_gear_box,motor,type,doors,pic_url,dealer_id
+AA8bJigV,5 Series,"Poisoning by unsp drugs acting on muscles, assault, sequela",3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-black-daily-travel-trolley-sports-car-png-image_6561576.png",1
+JZRbKYGX,Civic,"Pnctr w/o fb of unsp great toe w damage to nail, init",1,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-red-trolley-sports-car-png-image_6561572.png",1
+465PSFSe,Milan,"Injury of radial nerve at wrs/hnd lv of left arm, init",1,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-black-scooter-sports-car-png-image_6561568.png",1
+TCErkZaU,Land Cruiser,"External constriction of unspecified ear, sequela",6,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-mobility-tool-for-car-transportation-png-image_6561561.png",1
+ls9pyD3o,Quest,Kitchen in prison as place,3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20180613/ourmid/pngtree-fashion-car-private-car-orange-red-car-simulation-illustration-png-image_4484916.png",1
+fDGLo7n9,Astro,"Unsp injury of right shoulder and upper arm, init encntr",5,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20200309/ourmid/pngtree-black-car-png-image_5330858.png",1
+pcScPhjF,F150,Athscl bypass of cor art of transplanted heart w ang pctrs,1,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-white-transportation-daily-travel-sports-car-png-image_6561589.png",1
+0Ol5YoTl,3500 Club Coupe,Dislocation of MCP joint of left index finger,5,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-black-transportation-business-sports-car-png-image_6561588.png",1
+04rD3uUq,Aventador,"Biological mother, perpetrator of maltreatment and neglect",3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-black-scooter-sports-car-png-image_6561568.png",1
+Y3ncoV9D,850,"Oth disp fx of third cervcal vert, subs for fx w nonunion",2,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20210722/ourmid/pngtree-car-white-transportation-daily-travel-sports-car-png-image_6561589.png",1
+9NI46ZVu,C70,"Poisn by oth antacids & anti-gstrc-sec drugs, slf-hrm, init",3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/element_our/20190529/ourmid/pngtree-yellow-fashion-luxury-car-illustration-simulation-illustration-image_1191556.jpg",1
+oXI04lU1,SLK-Class,Intentional self-harm by sharp glass,2,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20201029/ourmid/pngtree-pickup-truck-vector-template-isolated-car-on-white-background-all-elements-in-groups-on-separate-layers-png-image_5553417.png",1
+NtTm3PqL,Bonneville,"Oth nondisp fx of upper end of unsp humerus, init",5,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/element_our/20190529/ourmid/pngtree-fashion-private-car-blue-simulation-car-illustration-image_1191566.jpg",1
+RoumKRwp,Montero,"Displ oblique fx shaft of unsp rad, 7thG",3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-vector/20220721/ourmid/pngtree-car-lamborghini-png-image_6032223.png",1
+crQCXySa,Sentra,"Other superficial bite of unsp lesser toe(s), init encntr",4,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-clipart/20220701/ourmid/pngtree-retro-rally-car-png-image_5667191.png",1
+ykySqShe,Escalade EXT,Damage to pelvic organs fol (induced) term of pregnancy,1,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/element_our/20190529/ourmid/pngtree-stylish-luxury-car-simulation-car-illustration-image_1191573.jpg",1
+fzumsMBT,rio,"Monteggia's fx right ulna, subs for clos fx w delay heal",6,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-vector/20220307/ourmid/pngtree-big-isolated-vehicle-vector-icons-set-flat-illustrations-various-view-of-png-image_4420462.png",1
+rKm21YH3,Escort,"Partial traumatic amputation at knee level, right lower leg",5,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-vector/20201127/ourmid/pngtree-cool-sports-car-png-image_2437924.jpg",1
+y42RlYqv,Avalanche 2500,"Oth comp specific to multiple gest, third trimester, fetus 2",3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-vector/20220224/ourmid/pngtree-set-mockup-of-antique-car-in-retro-style-design-vector-png-image_4436992.png",1
+4HbxVDzD,2500,Obstructed labor due to breech presentation,3,2022,Automatico,Motor 1.6v,Sedan,4,"https://png.pngtree.com/png-vector/20220304/ourmid/pngtree-big-isolated-vehicle-vector-colorful-icons-set-flat-illustrations-of-various-png-image_4428329.png",1

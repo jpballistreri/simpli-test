@@ -23,7 +23,7 @@ exports.loadMockup = async () => {
           csvData.shift();
 
           const query =
-            "INSERT INTO vehicles (model,title,description,gear_box,year,type_gear_box,motor,type,doors,dealer_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+            "INSERT INTO vehicles (model,title,description,gear_box,year,type_gear_box,motor,type,doors,pic_url,dealer_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)";
 
           try {
             csvData.forEach((row) => {
@@ -39,7 +39,8 @@ exports.loadMockup = async () => {
                 motor: row[6],
                 type: row[7],
                 doors: row[8],
-                dealerId: row[9],
+                pic_url: row[9],
+                dealerId: row[10],
               };
               Vehicle.create(newVehicle)
                 .then((data) => {

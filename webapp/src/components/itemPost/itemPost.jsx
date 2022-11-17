@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 function ItemPost({ item }) {
   const { advance, pic_url, price, post_vehicles, id } = item;
+  console.log(item);
 
   const Container = styled.div`
     text-align: left;
@@ -47,7 +48,7 @@ function ItemPost({ item }) {
     >
       <Container>
         <div style={{ backgroundColor: "#cdd7de", borderRadius: "5px" }}>
-          <Image src={"https://freepngimg.com/thumb/car/4-2-car-png-hd.png"} />
+          <Image src={post_vehicles[0].vehicle.pic_url} />
         </div>
         <Title>{post_vehicles[0].vehicle.title}</Title>
         <Price>${price}</Price>
